@@ -11,6 +11,8 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as TestReadingRouteImport } from './routes/test-reading'
+import { Route as ZoneMapRouteImport } from './routes/zone-map'
 import { Route as ZonePipelineIdRouteImport } from './routes/zone.$pipelineId'
 
 const IndexRoute = IndexRouteImport.update({
@@ -23,6 +25,16 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TestReadingRoute = TestReadingRouteImport.update({
+  id: '/test-reading',
+  path: '/test-reading',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ZoneMapRoute = ZoneMapRouteImport.update({
+  id: '/zone-map',
+  path: '/zone-map',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ZonePipelineIdRoute = ZonePipelineIdRouteImport.update({
   id: '/zone/$pipelineId',
   path: '/zone/$pipelineId',
@@ -32,30 +44,45 @@ const ZonePipelineIdRoute = ZonePipelineIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/test-reading': typeof TestReadingRoute
+  '/zone-map': typeof ZoneMapRoute
   '/zone/$pipelineId': typeof ZonePipelineIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/test-reading': typeof TestReadingRoute
+  '/zone-map': typeof ZoneMapRoute
   '/zone/$pipelineId': typeof ZonePipelineIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/test-reading': typeof TestReadingRoute
+  '/zone-map': typeof ZoneMapRoute
   '/zone/$pipelineId': typeof ZonePipelineIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/zone/$pipelineId'
+  fullPaths:
+    '/' | '/about' | '/test-reading' | '/zone-map' | '/zone/$pipelineId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/zone/$pipelineId'
-  id: '__root__' | '/' | '/about' | '/zone/$pipelineId'
+  to: '/' | '/about' | '/test-reading' | '/zone-map' | '/zone/$pipelineId'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/test-reading'
+    | '/zone-map'
+    | '/zone/$pipelineId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  TestReadingRoute: typeof TestReadingRoute
+  ZoneMapRoute: typeof ZoneMapRoute
   ZonePipelineIdRoute: typeof ZonePipelineIdRoute
 }
 
@@ -75,6 +102,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/test-reading': {
+      id: '/test-reading'
+      path: '/test-reading'
+      fullPath: '/test-reading'
+      preLoaderRoute: typeof TestReadingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/zone-map': {
+      id: '/zone-map'
+      path: '/zone-map'
+      fullPath: '/zone-map'
+      preLoaderRoute: typeof ZoneMapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/zone/$pipelineId': {
       id: '/zone/$pipelineId'
       path: '/zone/$pipelineId'
@@ -88,6 +129,8 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  TestReadingRoute: TestReadingRoute,
+  ZoneMapRoute: ZoneMapRoute,
   ZonePipelineIdRoute: ZonePipelineIdRoute,
 }
 export const routeTree = rootRouteImport
