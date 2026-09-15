@@ -37,8 +37,9 @@ export const Route = createFileRoute("/")({
       },
     ],
   }),
-  component: Dashboard;
+  component: Dashboard,
 });
+
 
 const LEAK_STATUSES: LeakStatus[] = ["Minor Leak", "Moderate Leak", "Major Leak"];
 const ISSUE_STATUSES: LeakStatus[] = [
