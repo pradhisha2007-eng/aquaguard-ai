@@ -150,7 +150,7 @@ export function buildSampleCsv(): string {
 /** Generates a large simulated batch for the "Large Batch" edge case. */
 export function generateLargeBatch(count = 50): RawSensorReading[] {
   return Array.from({ length: count }, (_, i) => {
-    const zone = PIPELINE_ZONES[i % PIPELINE_ZONES.length];
+    const zone = PIPELINE_ZONES[i % PIPELINE_ZONES.length]!;
     const wob = Math.sin(i * 2.3);
     const broken = i % 11 === 0;
     return {

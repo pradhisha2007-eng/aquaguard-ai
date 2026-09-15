@@ -44,7 +44,7 @@ export function parseSensorCsv(text: string): CsvParseResult {
     return { rows, errors: [{ rowNumber: 0, raw: "", reason: "The file is empty." }] };
   }
 
-  const header = splitCsvLine(lines[0]).map((h) => h.toLowerCase());
+  const header = splitCsvLine(lines[0] ?? "").map((h) => h.toLowerCase());
   const hasHeader = header.includes("pipelineid");
   if (!hasHeader) {
     return {
@@ -52,7 +52,7 @@ export function parseSensorCsv(text: string): CsvParseResult {
       errors: [
         {
           rowNumber: 1,
-          raw: lines[0],
+          raw: lines[0] ?? "",
           reason: `Header row not recognised. Expected columns: ${EXPECTED.join(", ")}.`,
         },
       ],
